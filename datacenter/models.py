@@ -31,6 +31,17 @@ class Visit(models.Model):
         )
 
     def get_duration(self):
-        now = localtime()
+        end_date = localtime(self.leaved_at) if self.leaved_at else localtime()
         entered_at = localtime(self.entered_at)
-        return now - entered_at
+        return end_date - entered_at
+
+    def is_long(self, minutes=60):
+        duration = self.get_duration()
+        return duration.total_seconds() > minutes * 60
+
+    @staticmethod
+    def format_duration(duration):
+        days = '' if duration.days == 0 else f'{duration.days}d '
+        hours = duration.seconds // 3600
+        minutes = duration.seconds % 3600 // 60
+        return f'{days}{hours:02}h {minutes:02}m'
