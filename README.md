@@ -20,7 +20,7 @@ pip install -r requirements.txt
 - Run:
 
 ```bash
-python main.py
+python manage.py runserver 0.0.0.0:8000
 ```
 
 - Go to [Bank checkpoint website](http://127.0.0.1:8000/)
