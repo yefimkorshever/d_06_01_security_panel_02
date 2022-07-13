@@ -22,10 +22,9 @@ INSTALLED_APPS = ['datacenter']
 with env.prefixed("CHECKPOINT_"):
     SECRET_KEY = env('SECRET_KEY')
     DEBUG = env.bool('DEBUG', False)
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 ROOT_URLCONF = 'project.urls'
-
-ALLOWED_HOSTS = ['*']
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
